@@ -1,5 +1,5 @@
 const grid_countries = document.querySelector(".js-grid-countries");
-
+import { addListenerToCard } from "./card-details";
 export function createVueCountries(countries) {
   grid_countries.innerText = "";
   countries.forEach((country) => {
@@ -78,4 +78,5 @@ export function createVueCountries(countries) {
     card.append(divInformation);
     grid_countries.append(card);
   });
+  addListenerToCard();
 }

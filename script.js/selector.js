@@ -4,8 +4,13 @@
   const selectedContinent = event.target.value;
   const selectedContinentFirstLetterUppercase = selectedContinent.charAt(0).toUpperCase() + selectedContinent.slice(1);
 
-  const countriesChoiceDisplay = countries.filter(country => country.region[0].includes(`${selectedContinentFirstLetterUppercase}`));
-  createVueCountries(countriesChoiceDisplay)
+  if( selectedContinent != "world"){
+    const countriesChoiceDisplay = countries.filter(country => country.region[0].includes(`${selectedContinentFirstLetterUppercase}`));
+    createVueCountries(countriesChoiceDisplay)
+  } else {
+    createVueCountries(countries)
+  }
+ 
 
  }
 /**

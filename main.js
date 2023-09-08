@@ -2,6 +2,7 @@ import { callApi } from "./script.js/api";
 import { Country } from "./class/Country";
 import { createVueCountries } from "./script.js/createView";
 import { continentModification} from "./script.js/selector.js" ;
+import { searchCountryDisplay } from "./script.js/search";
 import "./script.js/toggleColorMode";
 import "./style.scss";
 const countries = [];
@@ -18,7 +19,7 @@ async function processData() {
         apiCountry.flags.alt,
         apiCountry.name.common,
         apiCountry.name.nativeName,
-        apiCountry.population,
+        apiCountry.population.toLocaleString(),
         apiCountry.continents,
         apiCountry.subregion,
         apiCountry.capital,
@@ -43,6 +44,35 @@ async function processData() {
 processData(); // Appelez la fonction pour démarrer le traitement des données
 
 
-// Sélectionnez l'élément select par son name ou ID
+// selector form
 const selectElement = document.querySelector('select[name="continent"]');
 selectElement.addEventListener("change", (event) => continentModification(event, countries));
+
+
+const searchElement = document.querySelector(".search-input-js")
+searchElement.addEventListener("input", (e) => {
+  searchCountryDisplay(e,countries);
+});
+
+
+// Sélectionnez le bouton
+const scrollToTopButton = document.querySelector('.btn-return');
+
+// Affichez le bouton lorsque la page est défilée de plus de 200 pixels
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 200) {
+        scrollToTopButton.style.display = 'block';
+    } else {
+        scrollToTopButton.style.display = 'none';
+    }
+});
+
+// Faites défiler la page vers le haut lorsque le bouton est cliqué
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Un défilement fluide
+    });
+});
+
+
