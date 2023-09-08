@@ -1,23 +1,33 @@
-// Sélectionnez l'élément select par son name ou ID
-const selectElement = document.querySelector('select[name="continent"]');
+ import { createVueCountries } from "./createView";
 
-selectElement.addEventListener(
-  "change",
-  function continentModification(event, countries) {
-    const selectedContinent = event.target.value;
+ export function continentModification(event, countries) {
+  const selectedContinent = event.target.value;
+  const selectedContinentFirstLetterUppercase = selectedContinent.charAt(0).toUpperCase() + selectedContinent.slice(1);
 
-    if (selectedContinent === "africa") {
-      console.log("africa");
-    } else if (selectedContinent === "america") {
-      console.log("america");
-    } else if (selectedContinent === "asia") {
-      console.log("asia");
-    } else if (selectedContinent === "europe") {
-      console.log("europe");
-    } else if (selectedContinent === "oceania") {
-      console.log("oceania");
-    } else {
-      console.log("none");
-    }
+  const countriesChoiceDisplay = countries.filter(country => country.region[0].includes(`${selectedContinentFirstLetterUppercase}`));
+  createVueCountries(countriesChoiceDisplay)
+
+ }
+/**
+
+  if (selectedContinent === "africa") {
+    const countriesAfrica = countries.filter(country => country.region[0] === "Africa");
+    console.log(countriesAfrica);
+  } else if (selectedContinent === "america") {
+    const countriesAmerica = countries.filter(country => country.region[0].includes("America"));
+    console.log(countriesAmerica);
+  } else if (selectedContinent === "asia") {
+    const countriesAsia = countries.filter(country => country.region[0] === "Asia");
+    console.log(countriesAsia);
+  } else if (selectedContinent === "europe") {
+    const countriesEurope = countries.filter(country => country.region[0] === "Europe");
+    console.log(countriesEurope);
+  } else if (selectedContinent === "oceania") {
+    const countriesOceania = countries.filter(country => country.region[0] === "Oceania");
+    console.log(countriesOceania);
+  } else {
+    const countriesWorld = countries;
+    console.log(countriesWorld);
   }
-);
+ * 
+ */

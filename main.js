@@ -1,8 +1,8 @@
 import { callApi } from "./script.js/api";
 import { Country } from "./class/Country";
 import { createVueCountries } from "./script.js/createView";
+import { continentModification} from "./script.js/selector.js" ;
 import "./script.js/toggleColorMode";
-import "./script.js/selector.js";
 import "./style.scss";
 const countries = [];
 
@@ -41,3 +41,8 @@ async function processData() {
 }
 
 processData(); // Appelez la fonction pour démarrer le traitement des données
+
+
+// Sélectionnez l'élément select par son name ou ID
+const selectElement = document.querySelector('select[name="continent"]');
+selectElement.addEventListener("change", (event) => continentModification(event, countries));

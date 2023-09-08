@@ -1,6 +1,7 @@
 const grid_countries = document.querySelector(".js-grid-countries");
 
 export function createVueCountries(countries) {
+  grid_countries.innerText = "";
   countries.forEach((country) => {
     const initalNameCountry = country.altSpellings
       .replace(/[\s-]+/g, "")
