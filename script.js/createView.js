@@ -23,9 +23,7 @@ export function createVueCountries(countries) {
 
     const ul = document.createElement("ul");
 
-    //    const liNativeName = document.createElement("li");
-    //   liNativeName.innerText = country.nativeName.ara.official;
-
+    
     const liPopulation = document.createElement("li");
     const spanPopulation = document.createElement("span");
     spanPopulation.innerText = "Population: ";
@@ -33,7 +31,7 @@ export function createVueCountries(countries) {
     pPopulation.innerText = country.population;
     liPopulation.append(spanPopulation);
     liPopulation.append(pPopulation);
-
+    
     const liRegion = document.createElement("li");
     const spanRegion = document.createElement("span");
     spanRegion.innerText = "Region: ";
@@ -41,7 +39,7 @@ export function createVueCountries(countries) {
     pRegion.innerText = country.region;
     liRegion.append(spanRegion);
     liRegion.append(pRegion);
-
+    
     const liCapital = document.createElement("li");
     const spanCapital = document.createElement("span");
     spanCapital.innerText = "Capital: ";
@@ -49,25 +47,30 @@ export function createVueCountries(countries) {
     pCapital.innerText = country.capital;
     liCapital.append(spanCapital);
     liCapital.append(pCapital);
-    /**
-    const liSubRegion = document.createElement("li");
-    liSubRegion.innerText = country.subRegion;
 
-    const domain = document.createElement("li");
-    domain.innerText = country.lvlDomain;
-
-    const currencies = document.createElement("li");
-    currencies.innerText = country.currencies;
+    const ulMoreInfo = document.createElement("ul")
+    ulMoreInfo.classList.add('country-information-more-information','display-none')
+     const liNativeName = document.createElement("li");
+     liNativeName.innerText = 'a voir';
+     const liSubRegion = document.createElement("li");
+     liSubRegion.innerText = country.subRegion;
+     
+     const domain = document.createElement("li");
+     domain.innerText = country.lvlDomain;
+     
+     const currencies = document.createElement("li");
+     currencies.innerText = country.currencies;
 
     const languages = document.createElement("li");
     languages.innerText = country.languages;
 
-    //a ul.append(liNativeName);
-    ul.append(liSubRegion);
-    ul.append(domain);
-    ul.append(currencies);
-    ul.append(languages);
-    */
+    ulMoreInfo.append(liNativeName);
+    ulMoreInfo.append(liSubRegion);
+    ulMoreInfo.append(domain);
+    ulMoreInfo.append(currencies);
+    ulMoreInfo.append(languages);
+    
+
     ul.append(liPopulation);
     ul.append(liRegion);
     ul.append(liCapital);
@@ -75,6 +78,7 @@ export function createVueCountries(countries) {
     card.append(flag);
     divInformation.append(title);
     divInformation.append(ul);
+    divInformation.append(ulMoreInfo)
     card.append(divInformation);
     grid_countries.append(card);
   });

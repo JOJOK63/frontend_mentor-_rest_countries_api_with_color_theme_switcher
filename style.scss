@@ -13,15 +13,19 @@ $VeryLightGray-LightModeBackground: hsl(0, 0%, 98%);
 $White-DarkModeTextLightModeElements: hsl(0, 0%, 100%);
 $Nunito: "Nunito Sans", sans-serif;
 
+
 body {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   font-size: 14px;
   font-family: $Nunito;
   background-color: $VeryLightGray-LightModeBackground;
+
 }
 
 header {
+  position: fixed;
+  top:0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,7 +57,7 @@ header {
 }
 
 nav {
-  margin: auto;
+  margin: 120px auto 0 auto;
   width: 90%;
   .search {
     height: 40px;
@@ -189,6 +193,37 @@ nav {
   }
 }
 
+.display-none {
+  display: none;
+}
+
+.expanded{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+  margin-top: 100px;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  padding: 20px;
+  border-radius: 0 0 0 0 ;
+    .country-flag{
+      border-radius: 0 0 0 0 ;
+    }
+
+  .country-information-more-information{
+    display: inline;
+  }
+}
+/* CSS pour désactiver le défilement */
+.no-scroll {
+  overflow: hidden;
+}
+
+
 @media screen and (min-width:800px) {
   body{
   header{
@@ -206,8 +241,10 @@ nav {
     nav{
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      margin: 60px;
       .search{
-        
+        height: 50px;
       }
     }
 
@@ -241,9 +278,4 @@ nav {
       }
     }
   }
-}
-
-.details{
-  background-color: red;
-  transform: scale(1.5);
 }
