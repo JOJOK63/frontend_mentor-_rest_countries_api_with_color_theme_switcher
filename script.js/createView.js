@@ -96,8 +96,8 @@ export function createVueCountries(countries) {
     const ulBorderCountries = document.createElement("ul"); 
     const liBorderCountries = document.createElement("li")
     console.log(country);
-    
     liBorderCountries.innerText = country.borderCountries;
+   
 
     ulBorderCountries.append(liBorderCountries)
     divBorderCountries.append(titleBorderCountries)
