@@ -191,6 +191,9 @@ nav {
       color: white;
     }
   }
+  .expanded{
+    background-color: $DarkBlue-DarkModeElements;
+      color: white;   }
 }
 
 .display-none {
@@ -214,7 +217,7 @@ nav {
       border-radius: 0 0 0 0 ;
     }
 
-  .country-information-more-information{
+  .country-information-more-information,.country-card-border-countries{
     display: inline;
   }
 }
@@ -242,7 +245,7 @@ nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 60px;
+      margin: 80px auto;
       .search{
         height: 50px;
       }
@@ -278,4 +281,6 @@ nav {
       }
     }
   }
+
+  
 }

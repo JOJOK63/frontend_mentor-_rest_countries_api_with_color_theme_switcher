@@ -6,10 +6,14 @@ import { searchCountryDisplay } from "./script.js/search";
 import "./script.js/toggleColorMode";
 import "./style.scss";
 const countries = [];
+const apiUrl = "https://restcountries.com/v3.1/all";
+const apiUrlAbbreviation = "https://restcountries.com/v3.1/alpha/"
+  
 
-async function processData() {
+
+async function processData() {  
   try {
-    const apiData = await callApi();
+    const apiData = await callApi(apiUrl);
 
     // Manipulez les données ici comme vous le souhaitez
     apiData.forEach((apiCountry) => {

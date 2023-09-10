@@ -1,5 +1,4 @@
-export async function callApi() {
-  const apiUrl = "https://restcountries.com/v3.1/all";
+export async function callApi(apiUrl) {
 
   try {
     const response = await fetch(apiUrl);

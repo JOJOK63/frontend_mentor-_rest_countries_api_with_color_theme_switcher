@@ -51,18 +51,57 @@ export function createVueCountries(countries) {
     const ulMoreInfo = document.createElement("ul")
     ulMoreInfo.classList.add('country-information-more-information','display-none')
      const liNativeName = document.createElement("li");
-     liNativeName.innerText = 'a voir';
+     let officialNativeName = '';
+
+    for (const lang in country.nativeName) {
+      if (country.nativeName[lang].official) {
+        officialNativeName = country.nativeName[lang].official;
+        break; // Sort de la boucle dès qu'une langue avec une propriété "official" est trouvée.
+      }
+    }
+
+    liNativeName.innerText = `Native Name : ${officialNativeName}`;
+    
      const liSubRegion = document.createElement("li");
-     liSubRegion.innerText = country.subRegion;
+     liSubRegion.innerText = `Sub Region : ${country.subRegion}`;
      
      const domain = document.createElement("li");
-     domain.innerText = country.lvlDomain;
+     domain.innerText = `Top Level Domain : ${country.lvlDomain}`;
      
      const currencies = document.createElement("li");
-     currencies.innerText = country.currencies;
+      let currenciesName = [];
+
+     for ( const crc in country.currencies){ 
+        if(country.currencies[crc].name){
+          currenciesName.push(country.currencies[crc].name)
+        }
+     }
+     currencies.innerText = `Currencies : ${currenciesName} `;
+
 
     const languages = document.createElement("li");
-    languages.innerText = country.languages;
+    let languagesList = [];
+
+    for ( const lg in country.languages){ 
+       if(country.languages[lg]){
+         languagesList.push(country.languages[lg])
+       }
+    }
+    languages.innerText =`Languages : ${languagesList} `;
+
+    const divBorderCountries = document.createElement('div') 
+    divBorderCountries.classList.add("country-card-border-countries","display-none")
+    const titleBorderCountries = document.createElement('h2');
+    titleBorderCountries.innerText = "Border Countries"
+    const ulBorderCountries = document.createElement("ul"); 
+    const liBorderCountries = document.createElement("li")
+    console.log(country);
+    
+    liBorderCountries.innerText = country.borderCountries;
+
+    ulBorderCountries.append(liBorderCountries)
+    divBorderCountries.append(titleBorderCountries)
+    divBorderCountries.append(ulBorderCountries)
 
     ulMoreInfo.append(liNativeName);
     ulMoreInfo.append(liSubRegion);
@@ -79,6 +118,7 @@ export function createVueCountries(countries) {
     divInformation.append(title);
     divInformation.append(ul);
     divInformation.append(ulMoreInfo)
+    divInformation.append(divBorderCountries)
     card.append(divInformation);
     grid_countries.append(card);
   });
