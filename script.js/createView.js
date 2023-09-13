@@ -17,41 +17,36 @@ export function createVueCountries(countries) {
     const divInformation = document.createElement("div");
     divInformation.classList.add("country-information");
 
+    const divHeaderInfo = document.createElement("div");
+    divHeaderInfo.classList.add("country-header-info");
+    divInformation.append(divHeaderInfo);
+
     const title = document.createElement("h1");
     title.classList.add("country-title");
     title.innerText = country.name;
 
     const ul = document.createElement("ul");
 
-    
     const liPopulation = document.createElement("li");
-    const spanPopulation = document.createElement("span");
-    spanPopulation.innerText = "Population: ";
-    const pPopulation = document.createElement("p");
-    pPopulation.innerText = country.population;
-    liPopulation.append(spanPopulation);
-    liPopulation.append(pPopulation);
-    
-    const liRegion = document.createElement("li");
-    const spanRegion = document.createElement("span");
-    spanRegion.innerText = "Region: ";
-    const pRegion = document.createElement("p");
-    pRegion.innerText = country.region;
-    liRegion.append(spanRegion);
-    liRegion.append(pRegion);
-    
-    const liCapital = document.createElement("li");
-    const spanCapital = document.createElement("span");
-    spanCapital.innerText = "Capital: ";
-    const pCapital = document.createElement("p");
-    pCapital.innerText = country.capital;
-    liCapital.append(spanCapital);
-    liCapital.append(pCapital);
+    liPopulation.innerHTML = `<span>Population : </span> ${country.population}`;
 
-    const ulMoreInfo = document.createElement("ul")
-    ulMoreInfo.classList.add('country-information-more-information','display-none')
-     const liNativeName = document.createElement("li");
-     let officialNativeName = '';
+    const liRegion = document.createElement("li");
+    liRegion.innerHTML = `<span>Region : </span> ${country.region}`;
+
+    const liCapital = document.createElement("li");
+    liCapital.innerHTML = `<span>Capital : </span> ${country.capital}`;
+
+    const liAlt = document.createElement("li");
+    liAlt.innerHTML = `<span>Alt Speeling : </span> ${country.altSpellings}`;
+    /////////////////////////////////////DIV MORE INFORMATION///////////////////////////////////////////
+    const divMoreInfo = document.createElement("div");
+    const ulMoreInfo = document.createElement("ul");
+    divMoreInfo.classList.add(
+      "country-information-more-information",
+      "display-none"
+    );
+    const liNativeName = document.createElement("li");
+    let officialNativeName = "";
 
     for (const lang in country.nativeName) {
       if (country.nativeName[lang].official) {
@@ -60,65 +55,76 @@ export function createVueCountries(countries) {
       }
     }
 
-    liNativeName.innerText = `Native Name : ${officialNativeName}`;
-    
-     const liSubRegion = document.createElement("li");
-     liSubRegion.innerText = `Sub Region : ${country.subRegion}`;
-     
-     const domain = document.createElement("li");
-     domain.innerText = `Top Level Domain : ${country.lvlDomain}`;
-     
-     const currencies = document.createElement("li");
-      let currenciesName = [];
+    liNativeName.innerHTML = `<span>Native Name :</span> ${officialNativeName}`;
 
-     for ( const crc in country.currencies){ 
-        if(country.currencies[crc].name){
-          currenciesName.push(country.currencies[crc].name)
-        }
-     }
-     currencies.innerText = `Currencies : ${currenciesName} `;
+    const liSubRegion = document.createElement("li");
+    liSubRegion.innerHTML = `<span>Sub Region : </span> ${country.subRegion}`;
 
+    const domain = document.createElement("li");
+    domain.innerHTML = `<span>Top Level Domain : </span> ${country.lvlDomain}`;
+
+    const currencies = document.createElement("li");
+    let currenciesName = [];
+
+    for (const crc in country.currencies) {
+      if (country.currencies[crc].name) {
+        currenciesName.push(country.currencies[crc].name);
+      }
+    }
+    currencies.innerHTML = `<span>Currencies : </span> ${currenciesName} `;
 
     const languages = document.createElement("li");
     let languagesList = [];
 
-    for ( const lg in country.languages){ 
-       if(country.languages[lg]){
-         languagesList.push(country.languages[lg])
-       }
+    for (const lg in country.languages) {
+      if (country.languages[lg]) {
+        languagesList.push(country.languages[lg]);
+      }
     }
-    languages.innerText =`Languages : ${languagesList} `;
+    languages.innerHTML = `<span>Languages : </span> ${languagesList} `;
 
-    const divBorderCountries = document.createElement('div') 
-    divBorderCountries.classList.add("country-card-border-countries","display-none")
-    const titleBorderCountries = document.createElement('h2');
-    titleBorderCountries.innerText = "Border Countries"
-    const ulBorderCountries = document.createElement("ul"); 
-    const liBorderCountries = document.createElement("li")
+    const divBorderCountries = document.createElement("div");
+    divBorderCountries.classList.add(
+      "country-card-border-countries",
+      "display-none"
+    );
+    const titleBorderCountries = document.createElement("h2");
+    titleBorderCountries.innerText = "Border Countries : ";
+    const ulBorderCountries = document.createElement("ul");
     console.log(country);
-    liBorderCountries.innerText = country.borderCountries;
-   
 
-    ulBorderCountries.append(liBorderCountries)
-    divBorderCountries.append(titleBorderCountries)
-    divBorderCountries.append(ulBorderCountries)
+    try {
+      const borderC = country.borderCountries;
+      borderC.forEach((element) => {
+        const liBorderCountries = document.createElement("li");
+        liBorderCountries.innerText = element;
+        ulBorderCountries.append(liBorderCountries);
+      });
+    } catch (error) {
+      // Handle any errors that may occur
+      console.error(error);
+    }
+
+    divBorderCountries.append(titleBorderCountries);
+    divBorderCountries.append(ulBorderCountries);
 
     ulMoreInfo.append(liNativeName);
     ulMoreInfo.append(liSubRegion);
     ulMoreInfo.append(domain);
     ulMoreInfo.append(currencies);
     ulMoreInfo.append(languages);
-    
 
     ul.append(liPopulation);
     ul.append(liRegion);
     ul.append(liCapital);
+    ul.append(liAlt);
 
     card.append(flag);
-    divInformation.append(title);
-    divInformation.append(ul);
-    divInformation.append(ulMoreInfo)
-    divInformation.append(divBorderCountries)
+    divMoreInfo.append(ulMoreInfo);
+    divHeaderInfo.append(title);
+    divHeaderInfo.append(ul);
+    divInformation.append(divMoreInfo);
+    divInformation.append(divBorderCountries);
     card.append(divInformation);
     grid_countries.append(card);
   });

@@ -13,19 +13,17 @@ $VeryLightGray-LightModeBackground: hsl(0, 0%, 98%);
 $White-DarkModeTextLightModeElements: hsl(0, 0%, 100%);
 $Nunito: "Nunito Sans", sans-serif;
 
-
 body {
   width: 100vw;
   height: 100%;
   font-size: 14px;
   font-family: $Nunito;
   background-color: $VeryLightGray-LightModeBackground;
-
 }
 
 header {
   position: fixed;
-  top:0;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,6 +115,7 @@ nav {
     border-radius: 10px;
     box-shadow: 0px 0px 3px 1px lightgray;
     border: none;
+    cursor: pointer;
 
     .country-flag {
       width: 100%;
@@ -128,46 +127,40 @@ nav {
     }
     .country-information {
       width: 90%;
-      margin: auto;
+      margin: 0px auto;
       padding: 20px;
 
-      .country-title {
-        margin-bottom: 10px;
-        font-size: 1.2rem;
-      }
-
-      ul {
+      li {
         list-style: none;
-        li {
-          span {
-            display: inline-block;
-            font-weight: 700;
-          }
-          p {
-            display: inline-block;
-            margin: 5px 0;
-            padding-left: 5px;
-          }
+        margin-bottom: 5px;
+        span {
+          display: inline-block;
+          font-weight: 700;
+        }
+      }
+      .country-header-info {
+        .country-title {
+          margin-bottom: 10px;
+          font-size: 1.2rem;
         }
       }
     }
   }
 }
 
-.btn-return{
+.btn-return {
   width: 50px;
   height: 50px;
   border-radius: 50px;
   position: fixed;
   bottom: 5px;
   right: 50%;
-  transform: translateX(50%); 
-  border: none; 
+  transform: translateX(50%);
+  border: none;
   cursor: pointer;
   background-color: transparent;
   box-shadow: 0 0 1px 1px $VeryLightGray-LightModeBackground;
-  img{
-    
+  img {
   }
 }
 
@@ -191,67 +184,96 @@ nav {
       color: white;
     }
   }
-  .expanded{
+  .expanded {
     background-color: $DarkBlue-DarkModeElements;
-      color: white;   }
+    color: white;
+  }
 }
 
 .display-none {
   display: none;
 }
+.grid-countries {
+  .expanded {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    margin-top: 100px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 0 0 0 0;
 
-.expanded{
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 50;
-  margin-top: 100px;
-  top:0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: white;
-  padding: 20px;
-  border-radius: 0 0 0 0 ;
-    .country-flag{
-      border-radius: 0 0 0 0 ;
+    .country-flag {
+      border-radius: 0;
     }
+    .country-information {
+      li {
+        margin: 10px 0;
+      }
+      .country-header-info {
+        margin-bottom: 25px;
+      }
 
-  .country-information-more-information,.country-card-border-countries{
-    display: inline;
+      .country-information-more-information {
+      }
+      .country-card-border-countries {
+        margin-top: 50px;
+        h2 {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+        ul {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+
+          li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 40px;
+            box-shadow: 0 0 8px -1px gray;
+          }
+        }
+      }
+    }
   }
 }
+
 /* CSS pour désactiver le défilement */
 .no-scroll {
   overflow: hidden;
 }
 
+@media screen and (min-width: 800px) {
+  body {
+    header {
+      padding: 0 100px;
+      height: 70px;
 
-@media screen and (min-width:800px) {
-  body{
-  header{
-    padding: 0 100px;
-    height: 70px;
-
-    h1{
-
+      h1 {
+      }
+      #toggle-color-mode {
+      }
     }
-    #toggle-color-mode{
 
-    }
-  }   
-  
-    nav{
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 80px auto;
-      .search{
+      .search {
         height: 50px;
       }
     }
 
-    .grid-countries{
+    .grid-countries {
       width: 90%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -265,22 +287,19 @@ nav {
       }
     }
 
-    .btn-return{
+    .btn-return {
       width: 50px;
       height: 50px;
       border-radius: 50px;
       position: fixed;
       bottom: 5px;
       right: 30px;
-      border: none; 
+      border: none;
       cursor: pointer;
       background-color: transparent;
       box-shadow: 0 0 1px 1px $VeryLightGray-LightModeBackground;
-      img{
-        
+      img {
       }
     }
   }
-
-  
 }

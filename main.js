@@ -1,17 +1,15 @@
 import { callApi } from "./script.js/api";
 import { Country } from "./class/Country";
 import { createVueCountries } from "./script.js/createView";
-import { continentModification} from "./script.js/selector.js" ;
+import { continentModification } from "./script.js/selector.js";
 import { searchCountryDisplay } from "./script.js/search";
 import "./script.js/toggleColorMode";
 import "./style.scss";
 const countries = [];
 const apiUrl = "https://restcountries.com/v3.1/all";
-const apiUrlAbbreviation = "https://restcountries.com/v3.1/alpha/"
-  
+const apiUrlAbbreviation = "https://restcountries.com/v3.1/alpha/";
 
-
-async function processData() {  
+async function processData() {
   try {
     const apiData = await callApi(apiUrl);
 
@@ -36,6 +34,7 @@ async function processData() {
 
       // Ajoutez le pays à votre tableau de pays
       countries.push(country);
+      countries.sort((a, b) => a.name.localeCompare(b.name));
     });
 
     createVueCountries(countries);
@@ -47,36 +46,33 @@ async function processData() {
 
 processData(); // Appelez la fonction pour démarrer le traitement des données
 
-
 // selector form
 const selectElement = document.querySelector('select[name="continent"]');
-selectElement.addEventListener("change", (event) => continentModification(event, countries));
+selectElement.addEventListener("change", (event) =>
+  continentModification(event, countries)
+);
 
-
-const searchElement = document.querySelector(".search-input-js")
+const searchElement = document.querySelector(".search-input-js");
 searchElement.addEventListener("input", (e) => {
-  searchCountryDisplay(e,countries);
+  searchCountryDisplay(e, countries);
 });
 
-
 // Sélectionnez le bouton
-const scrollToTopButton = document.querySelector('.btn-return');
+const scrollToTopButton = document.querySelector(".btn-return");
 
 // Affichez le bouton lorsque la page est défilée de plus de 200 pixels
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 200) {
-        scrollToTopButton.style.display = 'block';
-    } else {
-        scrollToTopButton.style.display = 'none';
-    }
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 200) {
+    scrollToTopButton.style.display = "block";
+  } else {
+    scrollToTopButton.style.display = "none";
+  }
 });
 
 // Faites défiler la page vers le haut lorsque le bouton est cliqué
-scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // Un défilement fluide
-    });
+scrollToTopButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Un défilement fluide
+  });
 });
-
-
