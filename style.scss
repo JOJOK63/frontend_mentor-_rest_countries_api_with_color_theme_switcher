@@ -185,7 +185,7 @@ nav {
     }
   }
   .expanded {
-    background-color: $DarkBlue-DarkModeElements;
+    background-color: $DarkBlue-DarkModeElements !important;
     color: white;
   }
 }
@@ -284,6 +284,36 @@ nav {
         width: 100%;
         box-shadow: 0px 0px 3px 1px lightgray;
         margin: 0px;
+      }
+      .expanded {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .country-flag {
+          height: 50%;
+        }
+        .country-information {
+          height: 50%;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          padding: 20px 50px;
+          .country-header-info {
+            width: 50%;
+          }
+          .country-information-more-information {
+            width: 50%;
+          }
+          .country-card-border-countries {
+            ul {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-around;
+              gap: 15px;
+            }
+          }
+        }
       }
     }
 
