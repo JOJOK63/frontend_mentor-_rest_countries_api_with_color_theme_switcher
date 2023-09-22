@@ -1,6 +1,14 @@
 const grid_countries = document.querySelector(".js-grid-countries");
 import { addListenerToCard } from "./card-details";
+
 export function createVueCountries(countries) {
+  const allAbreviatonToName = [];
+
+  countries.forEach((item) => {
+    allAbreviatonToName[item.name] = item.cca;
+  });
+
+  console.log(allAbreviatonToName);
   grid_countries.innerText = "";
   countries.forEach((country) => {
     const initalNameCountry = country.altSpellings
@@ -91,12 +99,16 @@ export function createVueCountries(countries) {
     const titleBorderCountries = document.createElement("h2");
     titleBorderCountries.innerText = "Border Countries : ";
     const ulBorderCountries = document.createElement("ul");
-    console.log(country);
 
     try {
       const borderC = country.borderCountries;
       borderC.forEach((element) => {
         const liBorderCountries = document.createElement("li");
+        /** 
+        console.log(element);
+        console.log(allAbreviatonToName);
+        const fullName = allAbreviatonToName[element];
+        */
         liBorderCountries.innerText = element;
         ulBorderCountries.append(liBorderCountries);
       });

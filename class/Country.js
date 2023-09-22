@@ -12,7 +12,8 @@ export class Country {
     currencies,
     languages,
     borders,
-    altSpellings
+    altSpellings,
+    cca
   ) {
     this.flag = flag;
     this.flagAlt = flagAlt;
@@ -27,5 +28,6 @@ export class Country {
     this.languages = languages;
     this.borderCountries = borders;
     this.altSpellings = altSpellings;
+    this.cca = cca;
   }
 }

@@ -29,7 +29,8 @@ async function processData() {
         apiCountry.currencies,
         apiCountry.languages,
         apiCountry.borders,
-        apiCountry.altSpellings[0]
+        apiCountry.altSpellings[0],
+        apiCountry.cca2
       );
 
       // Ajoutez le pays à votre tableau de pays
@@ -62,7 +63,7 @@ const scrollToTopButton = document.querySelector(".btn-return");
 
 // Affichez le bouton lorsque la page est défilée de plus de 200 pixels
 window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 200) {
+  if (window.scrollY > 200) {
     scrollToTopButton.style.display = "block";
   } else {
     scrollToTopButton.style.display = "none";
